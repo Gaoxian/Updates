@@ -60,8 +60,8 @@ struct ConfigurationResult: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.appStoreId = try? container.decode(String.self, forKey: .appStoreId)
-        self.buildString = try? container.decodeIfPresent(String.self, forKey: .build)
-        self.bundleVersion = try? container.decodeIfPresent(String.self, forKey: .bundleVersion)
+        self.buildString = try container.decodeIfPresent(String.self, forKey: .build)
+        self.bundleVersion = try container.decodeIfPresent(String.self, forKey: .bundleVersion)
         self.comparator = (try? container.decode(VersionComparator.self, forKey: .comparing))
             ?? Updates.comparingVersions
         self.minOSRequired = try? container.decode(String.self, forKey: .minOSRequired)
